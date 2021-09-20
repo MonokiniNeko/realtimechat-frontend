@@ -48,11 +48,18 @@ function Chat({ username, roomname, socket }) {
 
   console.log(messages, "mess");
 
+  let time = () => {
+    let date = new Date();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+    return ` à ${hour.toString()} : ${minutes.toString()}`
+  }
+
   return (
     <div className="chat">
       <div className="user-name">
         <h2>
-          {username} <span style={{ fontSize: "0.7rem" }}>in {roomname}</span>
+          {username} <span style={{ fontSize: "0.7rem" }}>dans {roomname}</span>
         </h2>
       </div>
       <div className="chat-message">
@@ -61,14 +68,14 @@ function Chat({ username, roomname, socket }) {
             return (
               <div className="message">
                 <p>{i.text}</p>
-                <span>{i.username}</span>
+                <span>{i.username}{time()}</span>
               </div>
             );
           } else {
             return (
               <div className="message mess-right">
                 <p>{i.text} </p>
-                <span>{i.username}</span>
+                <span>{i.username}{time()}</span>
               </div>
             );
           }
@@ -77,7 +84,7 @@ function Chat({ username, roomname, socket }) {
       </div>
       <div className="send">
         <input
-          placeholder="enter your message"
+          placeholder="entrez votre message"
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyPress={(e) => {
@@ -86,7 +93,7 @@ function Chat({ username, roomname, socket }) {
             }
           }}
         ></input>
-        <button onClick={sendData}>Send</button>
+        <button onClick={sendData}>Envoyer</button>
       </div>
     </div>
   );

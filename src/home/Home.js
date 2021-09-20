@@ -11,26 +11,26 @@ function Homepage({ socket }) {
       socket.emit("joinRoom", { username, roomname });
       //if empty error message pops up and returns to the same page
     } else {
-      alert("username and roomname are must !");
+      alert("Vous devez entrer un nom d'utilisateur et un nom de salle");
       window.location.reload();
     }
   };
 
   return (
     <div className="homepage">
-      <h1>Welcome to ChatApp</h1>
+      <h1>Bienvenu sur l'App Chat</h1>
       <input
-        placeholder="Input your user name"
+        placeholder="Entrez votre nom d'utilisateur"
         value={username}
         onChange={(e) => setusername(e.target.value)}
       ></input>
       <input
-        placeholder="Input the room name"
+        placeholder="Entrez le nom de la salle"
         value={roomname}
         onChange={(e) => setroomname(e.target.value)}
       ></input>
       <Link to={`/chat/${roomname}/${username}`}>
-        <button onClick={sendData}>Join</button>
+        <button onClick={sendData}>Rejoindre</button>
       </Link>
     </div>
   );
